@@ -19,7 +19,7 @@ const schoolManagementSystem = async () => {
                 { message: "Enter your age", type: "number", name: "age" },
             ]);
             let StuName = enroll.name;
-            if (students.some((student) => student.name === StuName.toLowerCase())) {
+            if (students.some((student) => student.name === StuName.toLowerCase()) && students.some(stu => stu.age === enroll.age)) {
                 console.log("Student already exists");
             }
             else if (isNaN(enroll.age) || enroll.name === "") {
@@ -36,7 +36,12 @@ const schoolManagementSystem = async () => {
                 console.log("No students enrolled yet.");
             }
             else {
-                console.log(students);
+                console.log(`Enrolled students:`);
+                students.forEach((student, index) => {
+                    console.log(`Student ${index + 1}:`);
+                    console.log(`Name: ${student.name.toUpperCase()}`);
+                    console.log(`Age: ${student.age}`);
+                });
             }
         }
         else if (ques.allOptions === "Delete") {
